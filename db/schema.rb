@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915212724) do
+ActiveRecord::Schema.define(version: 20170917103022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "series", force: :cascade do |t|
+    t.string   "imdb",         default: "", null: false
+    t.float    "my_rating"
+    t.string   "last_episode"
+    t.integer  "serie_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_series_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",      null: false
@@ -37,4 +48,5 @@ ActiveRecord::Schema.define(version: 20170915212724) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
+  add_foreign_key "series", "users"
 end

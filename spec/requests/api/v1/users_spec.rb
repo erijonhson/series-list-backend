@@ -39,4 +39,78 @@ RSpec.describe 'Users API', type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/auth' do
+    before do
+      post '/api/v1/auth', params: user_params.to_json, headers: headers
+    end
+
+    context 'when the request params are valid' do
+      let(:user_params) { attributes_for(:user) }
+
+      it 'returns status 200' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns json data for the created user' do
+        expect(json_body[:data][:email]).to eq(user_params[:email])
+      end
+    end
+
+    context 'when the request params are invalid' do
+      let(:user_params) { attributes_for(:user, email: 'invalidatemail.com') }
+
+      it 'returns status 422' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns json data for the errors' do
+        expect(json_body).to have_key(:errors)
+      end
+    end
+  end
+
+  describe 'PUT /api/v1/auth' do
+    before do
+      put '/api/v1/auth', params: user_params.to_json, headers: headers
+    end
+
+    context 'when the request params are valid' do
+      let(:user_params) { { email: 'new-rails-api-skecth@email.com' } }
+
+      it 'returns status 200' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns json data for the updated user' do
+        expect(json_body[:data][:email]).to eq(user_params[:email])
+      end
+    end
+
+    context 'when the request params are invalid' do
+      let(:user_params) { attributes_for(:user, email: 'invalidatemail.com') }
+
+      it 'return status 422' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'return json data for the errors' do
+        expect(json_body).to have_key(:errors)
+      end
+    end
+  end
+
+  describe 'DELETE /api/v1/auth' do
+    before do
+      delete '/api/v1/auth', params: {}, headers: headers
+    end
+
+    it 'returns status 200' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'removes the user from database' do
+      expect( User.find_by(id: user.id) ).to be_nil
+    end
+  end
 end
