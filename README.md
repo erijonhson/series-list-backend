@@ -25,7 +25,8 @@ Steps are necessary to get the application up and running.
   bundle exec spring rspec --format=d
   ```
 * Services 
-    **Series API**
+  ```
+    Series API
         GET /api/v1/series
             when no filter param is sent
             returns status code 200
@@ -55,7 +56,7 @@ Steps are necessary to get the application up and running.
         DELETE /api/v1/series/:id
             removes the task from the database
             returns status code 204
-    **Users API**
+    Users API
         PUT /api/v1/auth
             when the request params are valid
                 returns status 200
@@ -79,7 +80,7 @@ Steps are necessary to get the application up and running.
             when the request params are valid
                 returns json data for the created user
                 returns status 200
-    **Sessions API**
+    Sessions API
         POST /api/v1/auth/sign_in
             when the credentials are correct
                 returns the authentication data in the headers
@@ -90,14 +91,14 @@ Steps are necessary to get the application up and running.
         DELETE /api/v1/auth/sign_out
             changes the user auth token
             returns status code 200
-    **User**
+    User
         should validate that :email is case-insensitively unique
         should validate that :name cannot be empty/falsy
         should validate that :password_confirmation matches :password
         should have many serie dependent => destroy
         should validate that :email cannot be empty/falsy
         should allow :email to be ‹"example@email.com"›
-    **Serie**
+    Serie
         should respond to #user_id
         should respond to #imdb
         should respond to #serie_type
@@ -105,3 +106,4 @@ Steps are necessary to get the application up and running.
         should respond to #last_episode
         should validate that :imdb cannot be empty/falsy
         should respond to #my_rating
+  ```
