@@ -4,7 +4,8 @@ class CreateSeries < ActiveRecord::Migration[5.0]
       t.string :imdb, :null => false, :default => ""
       t.float :my_rating
       t.string :last_episode
-      t.integer :serie_type
+      t.integer :last_season
+      t.integer :serie_type, :null => false, :default => 0
       t.references :user, foreign_key: true
 
       t.timestamps

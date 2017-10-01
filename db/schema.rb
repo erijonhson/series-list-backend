@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20170917103022) do
     t.string   "imdb",         default: "", null: false
     t.float    "my_rating"
     t.string   "last_episode"
-    t.integer  "serie_type"
+    t.integer  "last_season"
+    t.integer  "serie_type",   default: 0,  null: false
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
