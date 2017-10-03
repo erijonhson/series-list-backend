@@ -5,10 +5,13 @@ RSpec.describe Serie, type: :model do
 
   it { is_expected.to belong_to(:user) }
 
+  it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :imdb }
+  it { is_expected.to validate_presence_of :poster_uri }
   it { is_expected.to validate_presence_of :serie_type }
 
   # check fields
+  it { is_expected.to respond_to(:title) }
   it { is_expected.to respond_to(:imdb) }
   it { is_expected.to respond_to(:my_rating) }
   it { is_expected.to respond_to(:last_episode) }

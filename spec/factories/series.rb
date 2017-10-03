@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :serie do
+    title { Faker::Movie.quote }
     imdb { Faker::Internet.password(8) }
     my_rating { Faker::Number.decimal(1, 1) } #=> '8.3'
     last_episode { Faker::Movie.quote }

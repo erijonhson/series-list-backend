@@ -41,6 +41,6 @@ class Api::V1::SeriesController < Api::V1::BaseController
   private
 
   def serie_params
-    params.require(:serie).permit(:imdb, :my_rating, :last_episode, :poster_uri, :serie_type)
+    params.require(:serie).permit(:title, :imdb, :my_rating, :last_episode, :poster_uri, :serie_type)
   end
 end
