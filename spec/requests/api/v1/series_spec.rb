@@ -90,7 +90,7 @@ RSpec.describe 'Series API', type: :request do
     let(:serie) { create(:serie, user_id: user.id) }
 
     before do
-      put "/api/v1/series/#{serie.id}", params: { serie: serie_params }.to_json, headers: headers
+      put "/api/v1/series/#{serie.imdb}", params: { serie: serie_params }.to_json, headers: headers
     end
 
     context 'when the params are valid' do
@@ -130,7 +130,7 @@ RSpec.describe 'Series API', type: :request do
     let(:serie) { create(:serie, user_id: user.id) }
 
     before do
-      delete "/api/v1/series/#{serie.id}", params: {}, headers: headers
+      delete "/api/v1/series/#{serie.imdb}", params: {}, headers: headers
     end
 
     it 'returns status code 204' do

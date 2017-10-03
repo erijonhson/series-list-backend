@@ -21,7 +21,7 @@ class Api::V1::SeriesController < Api::V1::BaseController
   end
 
   def update
-    serie = current_api_v1_user.serie.find(params[:id])
+    serie = current_api_v1_user.serie.find_by_imdb(params[:id])
     if serie.update_attributes(serie_params)
       render json: serie, status: :ok
     else
@@ -30,7 +30,7 @@ class Api::V1::SeriesController < Api::V1::BaseController
   end
 
   def destroy
-    serie = current_api_v1_user.serie.find(params[:id])
+    serie = current_api_v1_user.serie.find_by_imdb(params[:id])
     if serie.destroy
       head :no_content
     else
@@ -41,6 +41,6 @@ class Api::V1::SeriesController < Api::V1::BaseController
   private
 
   def serie_params
-    params.require(:serie).permit(:imdb, :my_rating, :last_episode, :serie_type)
+    params.require(:serie).permit(:imdb, :my_rating, :last_episode, :poster_uri, :serie_type)
   end
 end

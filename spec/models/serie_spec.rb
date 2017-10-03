@@ -13,6 +13,7 @@ RSpec.describe Serie, type: :model do
   it { is_expected.to respond_to(:my_rating) }
   it { is_expected.to respond_to(:last_episode) }
   it { is_expected.to respond_to(:last_season) }
+  it { is_expected.to respond_to(:poster_uri) }
   it { is_expected.to respond_to(:serie_type) }
   it { is_expected.to respond_to(:user_id) }
 end
